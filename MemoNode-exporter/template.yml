@@ -1,0 +1,23 @@
+---
+###
+- hosts: provider
+  gather_facts: no
+  remote_user: root
+###
+  vars_files:
+    - Vars/Group2/Group2_provider.yml
+  tasks:
+    - name: start node
+      template:
+        src: j2/shell/start.sh
+        dest: "{{ node_root }}"
+    - name: chmod_1
+      file:
+        path={{ node_root }}/start.sh mode=755
+    - name:
+      template:
+        src: j2/shell/stop.sh
+        dest: "{{ node_root }}"
+    - name: chmod_2
+      file:
+        path={{ node_root }}/stop.sh mode=755

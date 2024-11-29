@@ -1,0 +1,34 @@
+---
+###
+- hosts: provider
+  gather_facts: no
+  remote_user: root
+###
+  vars_files:
+    - Vars/Config.yml
+    - Vars/Group2/Group2_provider.yml
+
+  tasks:
+    - name: create directory
+      file:
+        path={{ node_root }} state=directory 
+    - name: copy node 
+      copy:  
+        src: Node_release/{{ node_release }}
+        dest: "{{ node_root }}"
+    - name: chmod 
+      shell:
+        chmod +x "{{ node_root }}"/{{ node_release }}
+    - name: node init
+      shell: 
+        MEFS_PATH={{ node_root }}/.{{ node_release }}  {{ node_root }}/{{ node_release }} init
+      ignore_errors: yes
+    - name: set config version
+      shell:
+        MEFS_PATH={{ node_root }}/.{{ node_release }}  {{ node_root }}/{{ node_release }} config set --key=contract.version --value={{ versiion }}
+    - name: set config endPoint
+      shell:
+        MEFS_PATH={{ node_root }}/.{{ node_release }}  {{ node_root }}/{{ node_release }} config set --key=contract.endPoint --value={{ endPoint }}
+    - name: set config roleContract
+      shell:
+        MEFS_PATH={{ node_root }}/.{{ node_release }}  {{ node_root }}/{{ node_release }} config set --key=contract.roleContract --value={{ roleContract }}

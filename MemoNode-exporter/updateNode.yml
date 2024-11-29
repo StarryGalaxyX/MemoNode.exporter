@@ -1,0 +1,21 @@
+---
+###
+- hosts: keeper
+  gather_facts: no
+  remote_user: root
+###
+  vars_files:
+    - Vars/keeper_Group1.yml
+    - Vars/Config.yml
+
+  tasks:
+    - name: stop node
+      shell:
+        MEFS_PATH={{ node_root }}/.{{ node_release }} {{ node_root }}/{{ node_release }} daemon stop
+    - name: update node
+        copy:
+          src: Node_release/{{ node_release }}
+          dest: "{{ node_root }}"
+    - name: start node
+      shell:
+        MEFS_PATH={{ node_root }}/.{{ node_release }} nohup {{ node_root }}/{{ node_release }} daemon start --api=/ip4/127.0.0.1/tcp/14001 --swarm-port=4001 --group=1 >{{ node_root }}/{{node_release}}.log 2>&1 &

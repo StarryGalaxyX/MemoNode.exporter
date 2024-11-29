@@ -1,0 +1,6 @@
+## 定义节点类型 mefs-user mefs-provider mefs-keeper
+node_release: mefs-provider
+##定义目标主机节点根目录
+node_root: /memo/provider/p1
+#公共节点
+bootstrap: 

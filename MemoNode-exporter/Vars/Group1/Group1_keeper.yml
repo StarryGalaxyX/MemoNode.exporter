@@ -1,0 +1,7 @@
+## 定义节点类型 mefs-user mefs-provider mefs-keeper
+node_release: mefs-keeper
+##定义目标主机节点根目录
+node_root: /memo/keeper/k1
+#公共节点
+bootstrap: "/ip4/10.2.2.20/tcp/4001/p2p/12D3KooWNhLDsLLCuy6U1LeAMdaqVg1SreBwkYJMuHRkesowjNgs"
+

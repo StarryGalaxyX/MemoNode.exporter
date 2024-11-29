@@ -1,0 +1,16 @@
+---
+###
+- hosts: provider
+  gather_facts: no
+  remote_user: root
+###
+  vars_files:
+    - Vars/Group2/Group2_provider.yml
+
+  tasks:
+    - name: clear bootstrap
+      shell:
+        MEFS_PATH={{ node_root }}/.{{ node_release }} {{ node_root }}/{{ node_release }} bootstrap clear
+    - name: add bootstrap
+      shell:
+        MEFS_PATH={{ node_root }}/.{{ node_release }} {{ node_root }}/{{ node_release }} bootstrap add {{ bootstrap }}

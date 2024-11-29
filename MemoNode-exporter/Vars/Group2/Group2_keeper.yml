@@ -1,0 +1,12 @@
+## 定义节点类型 mefs-user mefs-provider mefs-keeper
+node_release: mefs-keeper
+##定义目标主机节点根目录
+node_root: /memo/keeper/k1
+#端口设置
+api: "/ip4/127.0.0.1/tcp/14001"
+swarm_prot: 4001
+##定义Group，，请注意修改
+group: 2
+#公共节点
+bootstrap: "/ip4/10.10.9.16/tcp/4001/p2p/12D3KooWE6qxHZ4bDMXpNu65Dhogja2s7YXB7CRmLQsvQGggRRHn"
+
